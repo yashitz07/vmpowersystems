@@ -177,19 +177,18 @@ p  { color: var(--gray-600); }
   flex-shrink: 0;
 }
 .logo-icon {
-  width: 50px;
-  height: 50px;
+  width: 62px;
+  height: 62px;
   flex-shrink: 0;
   overflow: hidden;
   border-radius: 50%;
-  background: #fff;
 }
 .logo-icon img {
-  width: 150%;
+  width: 155%;
   height: auto;
   display: block;
-  margin-left: -1%;
-  margin-top: -12px;
+  margin-left: -0%;
+  margin-top: -15px;
 }
 .logo-text  { display: flex; flex-direction: column; }
 .logo-main  { font-family: var(--font-head); font-weight: 700; font-size: 1rem; color: var(--white); line-height: 1.2; white-space: nowrap; }
@@ -231,15 +230,22 @@ p  { color: var(--gray-600); }
 .hamburger {
   display: none;
   flex-direction: column;
-  gap: 5px;
+  justify-content: space-between;
+  width: 28px;
+  height: 20px;
   padding: 6px;
+  cursor: pointer;
+  z-index: 1001;
+
+  flex-shrink: 0;   /* 🔥 CRITICAL FIX */
 }
+
 .hamburger span {
   display: block;
-  width: 24px; height: 2px;
+  width: 100%;      /* 🔥 instead of 24px */
+  height: 3px;
   background: var(--white);
   border-radius: 2px;
-  transition: var(--transition);
 }
 .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
 .hamburger.open span:nth-child(2) { opacity: 0; }
@@ -790,8 +796,19 @@ textarea { resize: vertical; min-height: 120px; }
 }
 .footer-bottom .container { display: flex; flex-direction: column; gap: .25rem; }
 .footer-bottom p { font-size: .82rem; color: rgba(255,255,255,.45); }
-.designer-link { color: var(--gold); font-weight: 600; transition: var(--transition); }
-.designer-link:hover { color: var(--gold-light); text-decoration: underline; }
+.designer-link {
+  color: var(--gold-light);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: rgba(240,192,64,.45);
+  text-underline-offset: 3px;
+  transition: var(--transition);
+}
+.designer-link:hover {
+  color: #fff;
+  text-decoration-color: var(--gold-light);
+  text-shadow: 0 0 12px rgba(240,192,64,.4);
+}
 
 /* =============================================
    FLOATING BUTTONS
@@ -880,8 +897,8 @@ textarea { resize: vertical; min-height: 120px; }
 @media (max-width: 900px) {
   /* Nav */
   .hamburger { display: flex; }
-  /* Hide logo text on tablet/mobile — logo image is self-explanatory */
-  #header .logo-text { display: none; }
+  #header .logo-text { display: none !important; }
+  #header .logo-icon { width: 48px; height: 48px; }
   .nav-links {
     position: fixed;
     top: 70px; left: 0;
@@ -896,6 +913,21 @@ textarea { resize: vertical; min-height: 120px; }
     box-shadow: 0 8px 24px rgba(0,0,0,.3);
     z-index: 999;
   }
+  .navbar {
+  padding: 0 10px;
+}
+
+.nav-cta {
+  flex-shrink: 0;       /* prevent squeezing */
+}
+
+.nav-links {
+  display: none;        /* hide from layout when closed */
+}
+
+.nav-links.open {
+  display: flex;        /* show only when opened */
+}
   .nav-links.open { transform: translateY(0); }
   .nav-link  { padding: .75rem 0; border-bottom: 1px solid rgba(255,255,255,.07); }
   .nav-cta   { margin-top: .5rem; justify-content: center; padding: .75rem; }
