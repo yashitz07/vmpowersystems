@@ -176,10 +176,24 @@ p  { color: var(--gray-600); }
   gap: .75rem;
   flex-shrink: 0;
 }
-.logo-icon { width: 44px; height: 44px; flex-shrink: 0; }
+.logo-icon {
+  width: 50px;
+  height: 50px;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 50%;
+  background: #fff;
+}
+.logo-icon img {
+  width: 150%;
+  height: auto;
+  display: block;
+  margin-left: -1%;
+  margin-top: -12px;
+}
 .logo-text  { display: flex; flex-direction: column; }
-.logo-main  { font-family: var(--font-head); font-weight: 700; font-size: 1.05rem; color: var(--white); line-height: 1.2; }
-.logo-sub   { font-size: .7rem; color: var(--gold); font-weight: 500; letter-spacing: .04em; }
+.logo-main  { font-family: var(--font-head); font-weight: 700; font-size: 1rem; color: var(--white); line-height: 1.2; white-space: nowrap; }
+.logo-sub   { font-size: .68rem; color: var(--gold); font-weight: 500; letter-spacing: .04em; white-space: nowrap; }
 
 /* Nav Links */
 .nav-links {
@@ -776,6 +790,8 @@ textarea { resize: vertical; min-height: 120px; }
 }
 .footer-bottom .container { display: flex; flex-direction: column; gap: .25rem; }
 .footer-bottom p { font-size: .82rem; color: rgba(255,255,255,.45); }
+.designer-link { color: var(--gold); font-weight: 600; transition: var(--transition); }
+.designer-link:hover { color: var(--gold-light); text-decoration: underline; }
 
 /* =============================================
    FLOATING BUTTONS
@@ -864,6 +880,8 @@ textarea { resize: vertical; min-height: 120px; }
 @media (max-width: 900px) {
   /* Nav */
   .hamburger { display: flex; }
+  /* Hide logo text on tablet/mobile — logo image is self-explanatory */
+  #header .logo-text { display: none; }
   .nav-links {
     position: fixed;
     top: 70px; left: 0;
